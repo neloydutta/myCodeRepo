@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1451441166 source:c:\users\neloy\desktop\tp\beingzero cps\day16 _ 30-12-2015\wordament\main.cpp
+	<iostream>
+	<stdio.h>
+	<string.h>
+
+1467018273 source:c:\users\neloy\desktop\tp\beingzero cps\day16&17 _ 30-12-2015\wordament\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
