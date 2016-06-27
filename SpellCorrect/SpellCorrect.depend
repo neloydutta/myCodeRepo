@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1437818477 source:c:\users\neloy\desktop\beingzero workshop\spellcorrect\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1438046100 source:c:\users\neloy\desktop\tp\beingzero workshop\spellcorrect\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
