@@ -2,6 +2,9 @@
 #include <cstdio>
 #include <cstring>
 #include <cassert>
+#include <stdbool.h>
+#include <stdlib.h>
+#define ALPHABET_SIZE 26
 using namespace std;
 
 char friendship[20000][20000];
@@ -9,11 +12,71 @@ char names[20000][100];
 int idx,pidx;
 int path[20000];
 
+typedef struct node
+{
+    int isEndOfWord;
+    struct node* next[ALPHABET_SIZE];
+}Node;
+
+
+Node* createNode()
+{
+    int i=0;
+    Node* newNode=(Node*)malloc(sizeof(Node));
+    for(i=0;i<ALPHABET_SIZE;i++)
+    {
+        newNode->next[i]=NULL;
+    }
+    newNode->isEndOfWord=-1;
+    return newNode;
+}
+
+Node *head;
+
+int addName(char word[])
+{
+    int len=strlen(word),i;
+    Node *temp=head;
+    Node *newNode;
+    for(i=0;i<len;i++)
+    {
+
+        if(temp->next[(word[i]-'a')]==NULL)
+        {
+            newNode=createNode();
+            temp->next[(word[i]-'a')]=newNode;
+        }
+        temp=temp->next[(word[i]-'a')];
+
+    }
+    temp->isEndOfWord=idx;
+    strcpy(names[idx], word);
+    return idx++;
+    //printf("Word '%s' is inserted!",word);
+}
+
+int getIndex(char word[])
+{
+    int len=strlen(word),i;
+    Node* temp=head;
+    for(i=0;i<len;i++)
+    {
+        if(temp->next[(word[i]-'a')]==NULL)
+        {
+            return -1;
+        }
+        temp=temp->next[(word[i]-'a')];
+    }
+    return temp->isEndOfWord;
+}
+
+/*
 int addName(char name[])
 {
     strcpy(names[idx], name);
     return idx++;
 }
+
 int getIndex(char name[])
 {
     for(int i=0;i<idx;i++)
@@ -23,7 +86,7 @@ int getIndex(char name[])
     }
     return -1;
 }
-
+*/
 int addFriendship(char name1[],char name2[])
 {
     int idx1,idx2;
@@ -91,6 +154,7 @@ void findStats()
             mcnt=cnt;
             idxm=i;
         }
+        cnt = 0;
     }
     printf("\nMost-Social: %s :D\n\nLeast-Social: %s :|\n",names[idxm],names[idxl]);
 }
@@ -153,6 +217,7 @@ int main()
 
     int choice;
     char name1[100],name2[100];
+    head = createNode();
     FILE *fp = fopen("friendship.txt", "r");
     assert(fp!=NULL);
     while(!feof(fp))
