@@ -146,11 +146,11 @@ void findStats()
             if(friendship[i][j]==1)
                 cnt++;
         }
-        if(cnt<lcnt){
+        if(cnt<=lcnt){
             lcnt=cnt;
             idxl=i;
         }
-        if(cnt>mcnt){
+        if(cnt>=mcnt){
             mcnt=cnt;
             idxm=i;
         }
